@@ -23,8 +23,10 @@
                     </a>
                 </td>
                 <td>
-                    <form action="">
-                        <button>
+                    <form method="POST" action=" {{ route('user.delete', ['user' => $user->id]) }} ">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">
                             Törlés
                         </button>
                     </form>
