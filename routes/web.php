@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [Controller::class, "welcome"]);
+
+Route::group([
+    "prefix" => "users",
+    "controller" => UserController::class
+], function () {
+    Route::get("/create", "createForm");
+    Route::post("/create", "store")->name("users.store");
+    
 });
