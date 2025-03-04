@@ -4,6 +4,7 @@
 </head>
 <body>
     <form method="POST" action="{{ route('users.store') }}">
+        @csrf
         <input name="email" placeholder="E-mail cím">
         <br>
         <br>
