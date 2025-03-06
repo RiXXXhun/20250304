@@ -23,7 +23,7 @@
                     </a>
                 </td>
                 <td>
-                    <form method="POST" action=" {{ route('user.delete', ['user' => $user->id]) }} ">
+                    <form method="POST" action=" {{ route('users.delete', ['user' => $user->id]) }} ">
                         @csrf
                         @method('DELETE')
                         <button type="submit">

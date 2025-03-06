@@ -29,6 +29,5 @@ Route::group([
     Route::get("/update/{user}", "updateForm")->name("users.updateForm");
     Route::post("/update/{user}", "update")->name("users.update");
     
-    Route::delete("/delete/{user}", "delete")->name("users.name");
-
+    Route::delete("/delete/{user}", "delete")->name("users.delete");
 });
