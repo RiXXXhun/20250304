@@ -48,5 +48,5 @@ Route::group([
     Route::post("/update/{house}", "update")->name("houses.update");
 
     Route::delete("/delet/{house}", "delete")->name("houses.delete");
-
+  
 });

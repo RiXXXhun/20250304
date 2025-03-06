@@ -11,8 +11,8 @@ class House extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'address',
+        'color',
         'user_id'
     ];
 
