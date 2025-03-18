@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\UserController;
@@ -49,4 +50,19 @@ Route::group([
 
     Route::delete("/delet/{house}", "delete")->name("houses.delete");
   
+});
+
+
+
+Route::group([
+    "prefix" => "animals",
+    "controller" => AnimalController::class
+], function () {
+    Route::get("/list", "list")->name("animals.list");
+    Route::get("/create", "createForm")->name("animals.createForm");
+    Route::get("/update/{animal}", "updateForm")->name("animals.updateForm");
+
+    Route::post("/store", "store")->name("animals.store");
+    
+    Route::delete("/delete/{animal}", "delete")->name("animals.delete");
 });
