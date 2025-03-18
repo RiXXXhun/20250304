@@ -31,7 +31,9 @@ class HouseController extends Controller
 
     public function updateForm(House $house)
     {
+        $users = User::query()->get();
 
+        return view("houses.update", ["house" => $house, "users" => $users]);
     }
 
 
@@ -48,11 +50,17 @@ class HouseController extends Controller
 
     public function update(House $house, Request $request)
     {
+        //frissitse le a házat mindne adattal kivétel a tokennel 
+        $house->update($request->except(['_token']));
+        $house->save();
 
+        return redirect()->route("houses.list");
     }
 
     public function delete(House $house)
     {
+        $house->delete();
 
+        return redirect()->route("houses.list");
     }
 }

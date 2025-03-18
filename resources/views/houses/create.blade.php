@@ -4,22 +4,26 @@
 
     <div class="row">
         <div class="col-4">
-            <form action="{{ route('houses.store') }}" method="POST" >
+            @if(isset($house))
+                <form action="{{ route('houses.update', ['house' => $house->id]) }}" method="POST" >
+            @else
+                <form action="{{ route('houses.store') }}" method="POST" >
+            @endif     
                 @csrf
 
                 <div class="form-group">
                     <label for="">Cím</label>
-                    <input type="text" name="address" class="form-control">
+                    <input type="text" name="address" class="form-control" value="{{ isset($house) ? $house->address : '' }}">
                 </div>
                 <div class="form-group">
                     <label for="">Szín</label>
-                    <input type="text" name="color" class="form-control">
+                    <input type="text" name="color" class="form-control" value="{{ isset($house) ? $house->color : '' }}">
                 </div>
                 <div class="form-group">
                     <label for="">Tulajdonos</label>
                     <select name="user_id" id="" class="form-control">
                         @foreach($users as $user)
-                            <option value="{{ $user->id }}">
+                            <option value="{{ $user->id }}" @if(isset($house) && $house->user_id == $user->id) selected @endif>
                                 {{ $user->name }}
                             </option>
                         @endforeach

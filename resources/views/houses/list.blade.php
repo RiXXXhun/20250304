@@ -5,6 +5,9 @@
     <h1>HÁZAK LISTA</h1>
     <div class="row">
         <div class="col-12">
+            <a href="{{ route('houses.createForm') }}" class="btn btn-primary">
+                Hozzáadás
+            </a>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -23,13 +26,17 @@
                                 <td> {{ $house->address }} </td>
                                 <td> {{ $house->color }} </td>
                                 <td> {{ $house->user->name }} </td>
-                                <td>
-                                    <button class="btn btn-primary">
+                                <td class="d-flex" style="gap: 5px;">
+                                    <a class="btn btn-warning" href="{{ route('houses.updateForm', ['house' => $house->id]) }}">
                                         Módosítás
-                                    </button>
-                                    <button class="btn btn-danger">
-                                        Törlés
-                                    </button>
+                                    </a>
+                                    <form action="{{ route('houses.delete', ['house' => $house->id]) }}" method="POST">
+                                        @method("DELETE")
+                                        @csrf()
+                                        <button class="btn btn-danger" type="submit">
+                                            Törlés
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
